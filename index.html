@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click Test</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #clickMeButton, #topRightButton {
+            position: absolute;
+            padding: 20px;
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #clickMeButton {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #topRightButton {
+            right: 10px;
+            top: 10px;
+        }
+        #timeDetails {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button id="clickMeButton">Click me</button>
+        <button id="topRightButton">Click me</button>
+        <div id="timeDetails"></div>
+    </div>
+
+    <script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                const now = new Date();
+                const timeDetails = now.toISOString().slice(0, 19).replace('T', ' ') + '.' + now.getMilliseconds();
+                document.getElementById('timeDetails').innerText = 'Clicked at: ' + timeDetails;
+            });
+        });
+    </script>
+</body>
+</html>
