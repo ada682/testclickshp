@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click Test</title>
     <style>
         body {
@@ -10,55 +12,41 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-        }
-        #container {
             position: relative;
-            width: 100%;
-            height: 100%;
         }
-        #clickMeButton {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #00aaff;
+        #mainButton {
+            background-color: #00f;
             color: white;
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
-        #topRightButton {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            padding: 20px;
-            background-color: #00aaff;
+        #dummyButton {
+            background-color: #00f;
             color: white;
+            padding: 10px 20px;
             border: none;
             font-size: 16px;
-        }
-        #timeDetails {
             position: absolute;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 16px;
+            top: 20px;
+            right: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <button id="clickMeButton">Click me</button>
-        <button id="topRightButton">Click me</button>
-        <div id="timeDetails"></div>
-    </div>
+    <button id="dummyButton">Click me</button>
+    <button id="mainButton">Click me</button>
 
     <script>
-        document.getElementById('clickMeButton').addEventListener('click', function() {
-            const now = new Date();
-            const timeDetails = now.toISOString().slice(0, 19).replace('T', ' ') + '.' + now.getMilliseconds();
-            document.getElementById('timeDetails').innerText = 'Clicked at: ' + timeDetails;
+        document.getElementById("mainButton").addEventListener("click", function() {
+            let currentTime = new Date().toISOString();
+            this.innerText = "Clicked at: " + currentTime;
+        });
+
+        document.getElementById("dummyButton").addEventListener("click", function(event) {
+            event.preventDefault();  // Prevent the default action
+            event.stopPropagation();  // Stop the event from propagating
         });
     </script>
 </body>
